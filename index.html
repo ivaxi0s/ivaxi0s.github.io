@@ -1,483 +1,722 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta name=viewport content="width=800">
-  <meta name="generator" content="HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org">
-  <style type="text/css">
-    /* Color scheme stolen from Sergey Karayev */
-    
-    a {
-      color: #1772d0;
-      text-decoration: none;
-    }
-    
-    a:focus,
-    a:hover {
-      color: #f09228;
-      text-decoration: none;
-    }
-    
-body, td, th, tr, p, a {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 15px; /* Reduced font size */
-}
-
-papertitle {
-    font-size: 16px;
-    font-weight: bold; /* This will make the text bold */
-}
-	  
-strong {
-    font-weight: normal; /* Removes the bold effect */
-    text-decoration: underline; /* Adds underline */
-}
-
-    
-emal {
-  font-size: 15px; /* Consistent reduction */
-}
-
-heading {
-  font-size: 22px; /* Slightly reduced */
-}
-
-smallheading {
-  font-size: 18px; /* Slightly reduced */
-}
-
-name {
-  font-size: 28px; /* Reduced size for name */
-}
-    emal {
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 16px;
-    }
-    
-    .one {
-      width: 160px;
-      height: 160px;
-      position: relative;
-    }
-    
-    .two {
-      width: 160px;
-      height: 160px;
-      position: absolute;
-      transition: opacity .2s ease-in-out;
-      -moz-transition: opacity .2s ease-in-out;
-      -webkit-transition: opacity .2s ease-in-out;
-    }
-    
-    .fade {
-      transition: opacity .2s ease-in-out;
-      -moz-transition: opacity .2s ease-in-out;
-      -webkit-transition: opacity .2s ease-in-out;
-    }
-
-    span.highlight {
-      background-color: #ffffd0;
-    }
-  </style>
-<td width="90%" valign="middle">
-  <link rel="icon" type="pics/png" href="Headshot.jpeg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ivaxi Sheth</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<!-- Replace your current body + main-container CSS with the edits below (only CSS changes). -->
+
+<style>
+  :root { --primary: #1772d0; --hover: #f09228; --text: #333; --border: #eee; }
+  html { scroll-behavior: smooth; }
+
+  /* ✅ Make the page use the screen better */
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    max-width: 1280px;          /* was 1100px */
+    width: min(1280px, 96vw);   /* intelligent: expands but keeps margins */
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #fff;
+  }
+
+  /* ✅ Sidebar smaller; main content gets more room */
+  .main-container {
+    display: grid;
+    grid-template-columns: 220px 1fr; /* was 240px */
+    gap: 40px;                        /* was 50px */
+  }
+
+  .sidebar { position: sticky; top: 40px; height: fit-content; }
+  .profile-pic { width: 100%; border-radius: 10px; margin-bottom: 20px; }
+  .contact-list { list-style: none; padding: 0; }
+  .contact-list li { margin-bottom: 10px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+  .contact-list i { width: 20px; color: var(--primary); text-align: center; }
+
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 15px 0;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-bottom: 1px solid transparent;
+  }
+  .sticky-nav a { color: #666; text-decoration: none; }
+  .sticky-nav a:hover { color: var(--primary); }
+
+  h1 { font-size: 2.5rem; margin: 0; }
+  h2 { border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 40px; font-size: 1.3rem; }
+
+  papertitle { font-weight: 700; font-size: 1.1rem; color: #000; }
+  heading {
+    font-weight: 700;
+    font-size: 1.3rem;
+    display: block;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+
+  .news-scroll {
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    padding: 15px;
+    background: #fcfcfc;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+  .news-list { list-style: none; padding: 0; margin: 0; }
+  .news-list li { margin-bottom: 8px; border-bottom: 1px solid #f5f5f5; padding-bottom: 4px; }
+  .news-date { font-weight: 700; color: var(--primary); }
+
+  table { border-collapse: collapse; width: 100%; }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { color: var(--hover); text-decoration: underline; }
+
+  /* Publications (prettier layout) */
+  .pubs { margin-top: 18px; }
+
+  /* ✅ Make publication cards adapt to available width */
+  .pub-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 240px) 1fr; /* flexible image column */
+    gap: 25px;
+    margin: 0 0 34px 0;
+    align-items: center;
+  }
+
+  .pub-img img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    background: #fff;
+    display: block;
+  }
+
+  .pub-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 6px 0;
+    line-height: 1.35;
+  }
+
+  .pub-authors {
+    font-size: 0.92rem;
+    color: #444;
+    margin: 0 0 4px 0;
+    line-height: 1.45;
+  }
+
+  .pub-venue {
+    font-size: 0.86rem;
+    color: #666;
+    margin: 0 0 8px 0;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .pub-links { margin: 0 0 8px 0; }
+  .pub-links a {
+    font-size: 0.85rem;
+    margin-right: 12px;
+    white-space: nowrap;
+  }
+
+  .pub-desc {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+    max-width: 95ch; /* was 85ch; lets the text use more width */
+  }
+
+  .pub-divider {
+    height: 1px;
+    background: #f2f2f2;
+    border: none;
+    margin: 26px 0;
+  }
+
+  @media (max-width: 850px) {
+    body { width: 92vw; } /* slightly tighter on mobile */
+    .main-container { grid-template-columns: 1fr; }
+    .sidebar { position: static; text-align: center; }
+    .profile-pic { max-width: 200px; }
+
+    .pub-row {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .pub-img img {
+      max-width: 420px; /* slightly larger on mobile */
+      margin: 0 auto;
+    }
+    .sticky-nav { overflow-x: auto; white-space: nowrap; }
+  }
+    /* Simple list sections (Mentees / Services) */
+  .section-card {
+    border: 1px solid #eee;
+    background: #fcfcfc;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .two-col-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .two-col-list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+
+  .two-col-list li:last-child { border-bottom: none; }
+
+  .two-col-list .right {
+    color: #666;
+    white-space: nowrap;
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 850px) {
+    .two-col-list li {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .two-col-list .right { white-space: normal; }
+  }
+
+.mentee-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  line-height: 1.6;
+}
+
+.mentee-name {
+  color: #000;
+}
+
+.mentee-affil {
+  color: #666;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Mobile: stack naturally */
+@media (max-width: 700px) {
+  .mentee-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .mentee-affil {
+    text-align: left;
+    white-space: normal;
+  }
+}
+
+
+
+</style>
 </head>
 
 <body>
-  <table width="800" border="0" align="center" cellspacing="0" cellpadding="0">
-    <tr>
-      <td>
-	<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-          <tr>
-            <td width="100%" valign="middle">
-              <p align="center">
-                <name>Ivaxi Sheth</name>
-              </p>
-<img src="Headshot.jpeg" style="float: right; margin-left: 15px; margin-bottom: 15px; width: 200px; height: 200px;">
+  <div class="main-container">
+    <aside class="sidebar">
+      <img src="Headshot.jpeg" alt="Ivaxi Sheth" class="profile-pic" />
+      <ul class="contact-list">
+        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:ivaxisheth17@gmail.com">Email</a></li>
+        <li><i class="fa-solid fa-graduation-cap"></i> <a href="https://scholar.google.com/citations?user=Isz5M1UAAAAJ">Scholar</a></li>
+        <li><i class="fa-brands fa-x-twitter"></i> <a href="https://twitter.com/ivakshi_s">X (Twitter)</a></li>
+        <li><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/ivaxi-sheth-269454135">LinkedIn</a></li>
+        <li><i class="fa-brands fa-github"></i> <a href="https://github.com/ivaxi0s">GitHub</a></li>
+      </ul>
+    </aside>
 
-<p>I am a PhD student at <a href="https://cispa.de/en">CISPA Helmholtz Center</a> under the supervision of <a href="https://cispa.saarland/group/fritz/">Prof. Mario Fritz</a>. I graduated with BEng + MEng Hons in <a href="https://www.imperial.ac.uk/electrical-engineering/">Electrical and Electronic Engineering</a> from <a href="https://www.imperial.ac.uk/">Imperial College London</a> supervised by <a href="https://cciliber.github.io/">Dr. Carlo Ciliberto</a>.  My research focuses on the dual use of Large Language Models (LLMs), covering the following key areas:</p>
+    <main>
+      <h1>Ivaxi Sheth</h1>
+      <p>
+I am a PhD student at <a href="https://cispa.de/en">CISPA Helmholtz Center</a>, supervised by 
+<a href="https://cispa.saarland/group/fritz/">Prof. Mario Fritz</a>. I hold a BEng + MEng (Hons)  
+from <a href="https://www.imperial.ac.uk/">Imperial College London</a>, where I was supervised by 
+<a href="https://cciliber.github.io/">Dr. Carlo Ciliberto</a>.
+Previously, I was a Research Assistant at <a href="https://mila.quebec/en/">Mila – Quebec AI Institute</a>, 
+and an AI Research Engineer at 
+<a href="https://www.imaginationtech.com/vision-ai/img-series4-nna/">Imagination Technologies (UK)</a>, 
+working under <a href="https://scholar.google.com/citations?hl=en&user=x_zcKisAAAAJ&view_op=list_works">
+Dr. Cagatay Dikici</a> on hardware acceleration for neural networks.
+</p>
 
-	
-<ul>
-<li>
-     Scientific Agents - <a href="#hypothesizing-causal-variables">[1]</a> and <a href="#oeai">[7]</a>
-  </li>
-										       
+<p>My research currently revolves around two main themes:</p>
+
+<ol>
   <li>
-     (Causal) Reasoning in LLMs - <a href="#hypothesizing-causal-variables">[1]</a> and <a href="#causalgraph2llm">[2]</a>
-	
+    <strong>Causal reasoning and scientific agents</strong>, with a focus on how multi-agent LLM systems can assist in discovering,
+    refining, and validating causal hypotheses.
   </li>
-	
   <li>
-    LLMs Safety, Control and Interpretability - <a href="#causalgraph2llm">[2]</a>, <a href="#task-switch">[3]</a>, <a href="#ethics">[5]</a> and <a href="#oeai">[7]</a>
+    <strong>Safety and ethics of multi-agent and self-evolving AI systems</strong>, with an emphasis on long-term risk from autonomous, open-ended and memory-augmented agents.
   </li>
-																			  
- <li>
-    Human-AI Interaction - <a href="#cbmneurips">[4]</a> and <a href="#intervention">[6]</a>
-  </li>
+</ol>
 
-</ul>
-    
-              </p>
-              <p>
- Previously I was a research assistant at <a href="https://mila.quebec/en/">Mila-Quebec AI</a>.  I also worked as an AI Research Engineer at <a href="https://www.imaginationtech.com/vision-ai/img-series4-nna/ "> Imagination Technologies, UK </a> under <a href="https://scholar.google.com/citations?hl=en&user=x_zcKisAAAAJ&view_op=list_works">Dr. Cagatay Dikici</a> working on the Hardware Acceleration of neural networks.
-              </p>
-
-		<p>
- 		 Outside of research, I love dancing and hold a diploma in Kathak. I actively mentor and perform Kathak, having performed across multiple cities in six countries.
-		</p>
-	      <p>
-<!-- 		If you are interested in pursuing a master's thesis, internship, or just collaboration, feel free to reach out to me! You can be hosted @CISPA. -->
-              </p>
-              <p align=center>
-                <a href="mailto:ivaxisheth17@gmail.com">Email</a> &nbsp/&nbsp
-                <a href="https://scholar.google.com/citations?user=Isz5M1UAAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://twitter.com/ivakshi_s"> Twitter </a>  &nbsp/&nbsp
-		<a href="https://www.linkedin.com/in/ivaxi-sheth-269454135"> Linkedin </a>     
-              </p>
-            </td>
-            <td width="80%">
-            </td>
-          </tr>
-        </table>
-        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-        	<tr>
-            <td width="100%" valign="middle">
-              <heading>News (not always updated) </heading>
-              <p>
-					    <ul>
-		<li> Preprint Alert! - <a href="https://arxiv.org/abs/2502.04512">Safety is Essential for Responsible Open-Ended Systems </a>. </li>
-		<li> Our paper - <a href="https://arxiv.org/abs/2410.15939">CausalGraph2LLM: Evaluating LLMs for Causal Queries</a> is accepted at NAACL 2025! See you in New Mexico! </li>
-	      <li> Our paper <a href="https://arxiv.org/abs/2402.18216"> LLM Task Interference: An Initial Study on the Impact of Task-Switch in Conversational History</a> is accepted at EMNLP 2024, see you in Miami.</li>
-	       <li> New paper preprint - <a href="https://arxiv.org/pdf/2409.02604"> Hypothesizing Missing Causal Variables </li>				    
-	      <li> Our paper <a href="https://arxiv.org/abs/2310.10702">Transparent Anomaly Detection via Concept-based Explanations</a> got accepted at <a href="https://xai-in-action.github.io/"> XAI in Action workshop</a> at Neurips 2023. 
-	      <li> Our paper <a href="https://openreview.net/forum?id=jvYXln6Gzn"> Auxiliary Losses for Learning Generalizable Concept-based Models </a> got accepted at <b>Neurips 2023</b>. See you in New Orleans!
-        <li> Our paper <a href="https://link.springer.com/chapter/10.1007/978-3-031-45673-2_32"> RelationalUNet for Image Segmentation </a> got accepted at MLMI. 
-					    </ul>
-              </p>
-            </td>
-          </tr>
-          <tr>
-          </tr>
+<p>
+More recently, I have been investigating <strong>persistent memory for LLMs</strong>, mechanisms that allow models to retain
+information across sessions and internal states. While such memory can enable personalization and long-horizon reasoning, it also
+introduces significant safety risks, including hidden state accumulation, privacy leakage, and long-term behavioral manipulation.
+</p>
 
 
-		
-          <tr>
-            <td width="100%" valign="middle">
-              <heading>Publications</heading>
-              <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-                	<tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/oeai.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		    <a name="oeai"></a>
-		<papertitle>Safety is Essential for Responsible Open-Ended Systems</papertitle>
-                    <br>
-                    <strong>Ivaxi Sheth</strong>,
-                    <a href="https://cispa.de/de/people/c01jawe">Jan Wehner</a>,
-                    <a href="https://s-abdelnabi.github.io/">Sahar Abdelnabi</a>,
-		   <a href="https://www.rutabinkyte.com/">Ruta Binkyte</a>
-	            <a href="https://cispa.saarland/group/fritz/">Mario Fritz</a>.
-                    <br>
-                    <em> Preprint</em> 
-                    <br>
-                    [
-                    <a href="https://arxiv.org/abs/2502.04512">Paper</a>, <a href="https://x.com/ivakshi_s/status/1889048612224880984">Tweet</a>
-                     ]
-                    <br>
-                    <p>
-We argue that Open-Ended AI's inherently dynamic and self-propagating nature introduces significant, underexplored risks, including challenges in maintaining alignment, predictability, and control. This paper systematically examines these challenges, proposes mitigation strategies, and calls for action for different stakeholders to support the safe, responsible and successful development of Open-Ended AI.
-                </tr>
-		      
-		      <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/hypothesizingcausal.png" alt="elign" style="border-style: none" width="200">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		    <a name="hypothesizing-causal-variables"></a>
-
-                      <papertitle>Hypothesizing Missing Causal Variables</papertitle>
-                    <br>
-                    <strong>Ivaxi Sheth</strong>,
-                    <a href="https://s-abdelnabi.github.io/">Sahar Abdelnabi</a>,
-	            <a href="https://cispa.saarland/group/fritz/">Mario Fritz</a>.
-                    <br>
-                    <em> CALM Workshop-Neurips 2024 </em> 
-                    <br>
-                    [
-                    <a href="https://arxiv.org/pdf/2409.02604">Paper</a>, <a href="https://github.com/ivaxi0s/hypothesizing-causal-variable-llm">Code</a>
-                     ]
-                    <br>
-                    <p>
-                      Can LLMs fill in the gaps of scientific discovery? This work challenges Large Language Models to complete partial causal graphs, revealing their surprising strengths—and limitations—in hypothesizing missing variables.
-                  </td>
-                </tr>
-
-		      
-                <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/causalg2llm.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		    <a name="causalgraph2llm"></a>
-		<papertitle>CausalGraph2LLM: Evaluating LLMs for Causal Queries</papertitle>
-                    <br>
-                    <strong>Ivaxi Sheth</strong>,
-                    <a href="https://baharefatemi.github.io/homepage/">Bahare Fatemi</a>,
-	            <a href="https://cispa.saarland/group/fritz/">Mario Fritz</a>.
-                    <br>
-                    <em> NAACL Findings 2025</em> 
-                    <br>
-                    [
-                    <a href="https://arxiv.org/abs/2410.15939">Paper</a>, <a href="https://github.com/ivaxi0s/CausalGraph2LLM">Code</a>
-                     ]
-                    <br>
-                    <p>
-                      This paper introduces CausalGraph2LLM, the first comprehensive benchmark to evaluate Large Language Models' ability to understand and reason with causal graphs, revealing their sensitivity to encoding and potential biases in downstream tasks.
-                </tr>
-
-                <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/llm4grn.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		    <a name="llm4grn"></a>
-		<papertitle>LLM4GRN: Discovering Causal Gene Regulatory Networks with LLMs -- Evaluation through Synthetic Data Generation</papertitle>
-                    <be>
-		   <a href="https://tejuafonja.com/">Tejumade Afonja*</a>,
-                    <strong>Ivaxi Sheth*</strong>,
-                    <a href="https://www.rutabinkyte.com/">Ruta Binkyte*</a>,
-	             Waqar Hanif, Thomas Ulas, Matthias Becker, 
-	            <a href="https://cispa.saarland/group/fritz/">Mario Fritz</a>.
-                    <br>
-                    <em> Preprint </em> 
-                    <br>
-                    [
-                    <a href="https://arxiv.org/abs/2410.15828#">Paper</a>, <a href="">Code</a>
-                     ]
-                    <br>
-                    <p>
-                     This paper explores the use of large language models (LLMs) for discovering gene regulatory networks (GRNs) from single-cell RNA sequencing data, demonstrating their effectiveness in guiding causal data generation and enhancing statistical modeling in biological research.                </tr>		      
-
-		      
-                <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/task-switch.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		<a name="task-switch"></a>
-                      <papertitle>LLM Task Interference: An Initial Study on the Impact of Task-Switch in Conversational History</papertitle>
-                    <br>
-	            <a href="https://scholar.google.com/citations?user=6Ngx1n8AAAAJ&hl=en&oi=sra">Akash Gupta*</a>,
-                    <strong>Ivaxi Sheth*</strong>,
-	            <a href="https://scholar.google.com/citations?user=BxFBCoYAAAAJ&hl=en">Vyas Raina*</a>,
-                    <a href="https://mi.eng.cam.ac.uk/~mjfg/index.html">Mark Gales</a>,
-	            <a href="https://cispa.saarland/group/fritz/">Mario Fritz</a>.
-                    <br>
-                    <em> EMNLP Main 2024 </em> 
-			  <p> </p>
-		   <em> ICML Foundation Models in Wild Workshop 2024</em>
-                    <br>
-                    [
-                    <a href="https://arxiv.org/abs/2402.18216">Paper</a>, <a href="https://github.com/ivaxi0s/llm-task-switch">Code</a>
-                     ]
-                    <br>
-                    <p>
-                      Large Language Models (LLMs) can perform a wide range of tasks, but their performance can be negatively impacted when there's a switch in tasks. This study is the first to formalize the study of such vulnerabilities, revealing that both very large and small LLMs can be susceptible to performance degradation from task-switches.
-                  </td>
-                </tr>
-		      
-                <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/coopcbm.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		<a name="cbmneurips"></a>
-		<papertitle>Auxiliary Losses for Learning Generalizable Concept-based Models</papertitle>
-                    <br>
-                    <strong>Ivaxi Sheth</strong>,
-                    <a href="https://saebrahimi.github.io/">Samira Ebrahimi Kahou</a>
-                    <br>
-                    <em> NeurIPS 2023 </em> 
-                    <br>
-                    [
-                    <a href="https://openreview.net/pdf?id=jvYXln6Gzn">Paper</a>, <a href="https://github.com/ivaxi0s/coop-cbm">Code</a>
-                     ]
-                    <br>
-                    <p>
-                      We proposed a multi-task learning paradigm for Concept Bottleneck Models to introduce inductive bias in concept learning. Our proposed model coop-CBM improves the downstream task accuracy over black box standard models. Using the concept orthogonal loss, we introduce orthogonality among concepts in the training of CBMs.
-                  </td>
-                </tr>
+<p>
+I enjoy learning from and collaborating with people from diverse backgrounds and disciplines. My inbox is always open, feel free to reach out.
+</p>
 
 
-                <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/ACE-firstpage2.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-                      <papertitle>Transparent Anomaly Detection via Concept-based Explanations</papertitle>
-                    <br>
-                    <a href="https://scholar.google.ca/citations?user=-hIQXcQAAAAJ&hl=en">Laya Rafiee Sevyeri*</a>
-                    <strong>Ivaxi Sheth*</strong>,
-                    <a href="https://scholar.google.com/citations?user=Zv-gelkAAAAJ&hl=en">Farhood Farahnak*</a>
-                    <a href="https://saebrahimi.github.io/">Samira Ebrahimi Kahou</a>
-                    <a href="https://www.mcgill.ca/bbme/shirin-abbasi-nejad-enger">Shirin Abbasinejad Enger</a>
-                    <br>
-                    <em>NeurIPS 2023, XAI in Action </em> 
-                    <br>
-                    [
-                    <a href="https://arxiv.org/abs/2310.10702">Paper</a>
-                     ]
-                    <br>
-                    <p>
-                      We propose Transparent {A}nomaly Detection {C}oncept {E}xplanations (ACE). ACE is able to provide human interpretable explanations in the form of concepts along with anomaly prediction. Our proposed model shows either higher or comparable results to black-box uninterpretable models.
-                  </td>
-                </tr>                
-		                
-		<tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/causalg2llm.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		    <a name="ethics"></a>
-		<papertitle>Survey on AI Ethics: A Socio-technical Perspective</papertitle>
-                    <br>
-                    Dave Mbiazi*, Meghana Bhange*, Maryam Babaei*,<strong> Ivaxi Sheth*</strong>, Patrik Joslin Kenfack*,
-                    <br>
-                    <em> Preprint </em> 
-                    <br>
-                    [
-                    <a href="https://arxiv.org/abs/2311.17228">Paper</a>
-                     ]
-                    <br>
-                    <p>
-			This work unifies the current and future ethical concerns of deploying AI into society.
-		</tr>
+      <nav class="sticky-nav">
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#mentees">Mentees</a>
+        <a href="#services">Services</a>
 
-                <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/runet.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-                      <papertitle>Relational UNet for Image Segmentation</papertitle>
-                    <br>
-                    <strong>Ivaxi Sheth*</strong>,
-                    <a href="">Pedro Braga*</a>,
-                    <a href="https://shivakanthsujit.github.io/">Shivakanth Sujit*</a>,
-                    Sahar Dastani,
-                    <a href="https://saebrahimi.github.io/">Samira Ebrahimi Kahou</a>
-                    <br>
-                    <em> International Workshop on Machine Learning in Medical Imaging 2023 </em> 
-                    <br>
-                    [
-                    <a href="https://arxiv.org/abs/2310.10702">Paper</a> , <a href="https://github.com/ivaxi0s/runet">Code</a>
-                     ]
-                    <br>
-                    <p>
-                      We propose RelationalUNet which introduces relational feature transformation to the UNet architecture. RelationalUNet models the dynamics between visual and depth dimensions of a 3D medical image by introducing Relational Self-Attention blocks in skip connections.                    </td>
-                </tr> 
-                
+        <a href="#patents">Patents</a>
+      </nav>
+
+      <section id="news">
+        <heading>News</heading>
+        <div class="news-scroll">
+          <ul class="news-list">
+            <li><span class="news-date">Jan 2026:</span> Funny or Persuasive, but Not Both: Evaluating Fine-Grained Multi-Concept Control in LLMs accepted at <b>EACL 2026</b> 🇲🇦 !</li>
+            <li><span class="news-date">Dec 2025:</span> Survey on AI Ethics: A Socio‐Technical Perspective accepted!</li>
+            <li><span class="news-date">Nov 2025:</span> Context-Aware Reasoning On Parametric Knowledge for Inferring Causal Variables presented at EMNLP in 🇨🇳!</li>
+            <li><span class="news-date">Aug 2025:</span> Started Applied Scientist II Internship at <b>Amazon Science</b>.</li>
+            <li><span class="news-date">May 2025:</span> Presenting at <b>NAACL 2025</b> in New Mexico.</li>
+          </ul>
+        </div>
+      </section>
+
+<section id="publications">
+  <heading style="margin-top: 40px;">Publications</heading>
+
+  <div class="pubs">
+
+    <!-- 1 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/beyond-steering.png" alt="Beyond Steering thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Funny or Persuasive, but Not Both: Evaluating Fine-Grained Multi-Concept Control in LLMs</div>
+        <div class="pub-authors">Arya Labroo, <strong>Ivaxi Sheth</strong>, Vyas Raina, Amaani Ahmed, Mario Fritz.</div>
+        <div class="pub-venue">EACL Main 2026</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/persistbench.png" alt="PersistBench thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">PersistBench: When Should Long-Term Memories Be Forgotten by LLMs?</div>
+        <div class="pub-authors">Sidharth Pulipaka, Oliver Chen, Manas Sharma, Taaha Bajwa, Vyas Raina, <strong>Ivaxi Sheth</strong>.</div>
+        <div class="pub-venue">Preprint</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+              <p class="pub-desc">Benchmark long-term memory usage in LLMs and find that persistent memories systematically induce cross-domain leakage and sycophantic behavior.</p>
+      </div>
+    </div>
+
+    <!-- 3 (already present; kept + updated venue text) -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/oeai.png" alt="Open-Ended AI Safety thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Safety Must Precede the Deployment of Open-Ended AI Agents</div>
+        <div class="pub-authors"><strong>Ivaxi Sheth</strong>, Jan Wehner, Sahar Abdelnabi, Ruta Binkyte, Mario Fritz.</div>
+        <div class="pub-venue">Preprint · Earlier version accepted at ICLR SSI-FM 2025</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2502.04512">Paper</a>
+          <a href="https://x.com/ivakshi_s/status/1889048612224880984">Tweet</a>
+        </div>
+        <p class="pub-desc">Examines systemic risks in open-ended, self-propagating AI agents and proposes mitigation strategies.</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/causaltradeoffs.png" alt="Invariance Conflicts thumbnail" />
+      </div>
+      <div class="pub-content">
+        <div class="pub-title">Trustworthy AI Suffers from Invariance Conflicts and Causality is the Solution</div>
+        <div class="pub-authors">Ruta Binkyte*, <strong>Ivaxi Sheth*</strong>, Zhijing Jin, Mohammad Havaei, Bernhard Schölkopf, Mario Fritz.</div>
+        <div class="pub-venue">Preprint</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+        <p class="pub-desc">Frames trustworthy AI trade-offs as incompatible invariance requirements and positions causality as a unifying solution.</p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/llmreview.png" alt="Justice in Judgment thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Justice in Judgment: Unveiling (Hidden) Bias in LLM-Assisted Peer Reviews</div>
+        <div class="pub-authors">Sai Suresh Macharla Vasu*, <strong>Ivaxi Sheth*</strong>, Hui-Po Wang, Ruta Binkyte, Mario Fritz.</div>
+        <div class="pub-venue">ARR</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+            <p class="pub-desc">LLM-assisted peer reviews exhibit biases against certain author demographics and academic expertise levels.</p>
+
+      </div>
+    </div>
+
+    <!-- 6 (already present; kept) -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/ivco.png" alt="IV Co-Scientist thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">IV Co-Scientist: Multi-Agent LLM Framework for Instrumental Variable Discovery</div>
+        <div class="pub-authors"><strong>Ivaxi Sheth</strong>, Zhijing Jin, Bryan Wilder, Dominik Janzing, Mario Fritz.</div>
+        <div class="pub-venue">ARR</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+              <p class="pub-desc">Multi-agent LLM framework for discovering instrumental variables from large observational datasets and databases.</p>
+
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/ethics-survey.png" alt="AI Ethics Survey thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Survey on AI Ethics: A Socio-technical Perspective</div>
+        <div class="pub-authors">Dave Mbiazi, Meghana Bhange, Maryam Babaei, <strong>Ivaxi Sheth</strong>, Patrik Joslin Kenfack, Samira Ebrahimi Kahou.</div>
+        <div class="pub-venue">Wiley Computational Intelligence · 2025</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+            <p class="pub-desc">Comprehensive survey of AI ethics from a socio-technical perspective, covering key challenges.</p>
+
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/hypothesizingcausal.png" alt="Context-Aware Reasoning thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Context-Aware Reasoning on Parametric Knowledge for Inferring Causal Variables</div>
+        <div class="pub-authors"><strong>Ivaxi Sheth</strong>, Sahar Abdelnabi, Mario Fritz.</div>
+        <div class="pub-venue">EMNLP Findings 2025</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+            <p class="pub-desc">LLM framework for hypothesizing causal variables and building a causal graph from parametric knowledge and context.</p>
+
+      </div>
+    </div>
+
+    <!-- 9 (already present; kept) -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/causalg2llm.png" alt="CausalGraph2LLM thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">CausalGraph2LLM: Evaluating LLMs for Causal Queries</div>
+        <div class="pub-authors"><strong>Ivaxi Sheth</strong>, <a href="https://baharefatemi.github.io/homepage/">Bahare Fatemi</a>, <a href="https://cispa.saarland/group/fritz/">Mario Fritz</a>.</div>
+        <div class="pub-venue">NAACL Findings 2025</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2410.15939">Paper</a>
+          <a href="https://github.com/ivaxi0s/CausalGraph2LLM">Code</a>
+        </div>
+              <p class="pub-desc">Benchmark for causal-graph reasoning and sensitivity to graph encoding in LLMs.</p>
+
+      </div>
+
+    </div>
+
+    <!-- 10 (already present, but venue text adjusted to match requested order) -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/task-switch.png" alt="LLM Task Interference thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">LLM Task Interference: An Initial Study on the Impact of Task-Switch in Conversational History</div>
+        <div class="pub-authors">Akash Gupta*, <strong>Ivaxi Sheth*</strong>, Vyas Raina, Mark Gales, Mario Fritz.</div>
+        <div class="pub-venue">EMNLP Main 2024</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2402.18216">Paper</a>
+          <a href="https://github.com/ivaxi0s/llm-task-switch">Code</a>
+        </div>
+               <p class="pub-desc">Studies performance degradation when models must switch tasks for multi-turn conversations.</p>
+
+      </div>
+    </div>
+
+    <!-- 11 (already present; kept) -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/coopcbm.png" alt="Concept-based models thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Auxiliary Losses for Learning Generalizable Concept-based Models</div>
+        <div class="pub-authors"><strong>Ivaxi Sheth</strong>, <a href="https://saebrahimi.github.io/">Samira Ebrahimi Kahou</a>.</div>
+        <div class="pub-venue">NeurIPS 2023</div>
+        <div class="pub-links">
+          <a href="https://openreview.net/pdf?id=jvYXln6Gzn">Paper</a>
+          <a href="https://github.com/ivaxi0s/coop-cbm">Code</a>
+        </div>
+                      <p class="pub-desc">Adds inductive bias via auxiliary objectives to improve generalization in concept bottleneck models.</p>
+
+      </div>
+
+    </div>
+
+    <!-- 12 (already present but updated title + venue to match requested list) -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/llm4grn.png" alt="LLM4GRN thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">LLM4GRN: Discovering Causal Gene Regulatory Networks with LLMs -- Evaluation through Synthetic Data Generation</div>
+        <div class="pub-authors">Tejumade Afonja*, <strong>Ivaxi Sheth*</strong>, Ruta Binkyte*, Waqar Hanif, Thomas Ulas, Matthias Becker, Mario Fritz.</div>
+        <div class="pub-venue">Preprint</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2410.15828#">Paper</a>
+        </div>
+                      <p class="pub-desc">Explores LLM-assisted pipelines for inferring gene regulatory networks from RNA sequencing data.</p>
+
+      </div>
+
+    </div>
+
+    <!-- 13 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <!-- <img src="pics/medg-krp.png" alt="MedG-KRP thumbnail" /> -->
+      </div>
+      <div>
+        <div class="pub-title">MedG-KRP: Medical Graph Knowledge Representation Probing</div>
+        <div class="pub-authors">Gabriel R. Rosenbaum, Lavender Yao Jiang*, <strong>Ivaxi Sheth*</strong>, Eric Karl Oermann.</div>
+        <div class="pub-venue">ML4H</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+            <p class="pub-desc">Benchmark for evaluating LLMs' medical knowledge using graph-based probing tasks.</p>
+
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/transparent-anomaly.png" alt="Transparent Anomaly Detection thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Transparent Anomaly Detection via Concept-based Explanations</div>
+        <div class="pub-authors">Laya Rafiee*, <strong>Ivaxi Sheth*</strong>, Farhood Farahnak*, Shirin Abbasinejad Enger.</div>
+        <div class="pub-venue">XAI in Action: Past, Present, and Future Applications · NeurIPS 2023</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+              <p class="pub-desc">Introduces concept-based explanations for anomaly detection models.</p>
+
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <img src="pics/uncertain-concepts.png" alt="Uncertain Concepts thumbnail" />
+      </div>
+      <div>
+        <div class="pub-title">Learning from Uncertain Concepts via Test-Time Interventions</div>
+        <div class="pub-authors"><strong>Ivaxi Sheth</strong>, Aamer Abdul, Laya Rafiee, Mohammad Havaei, Samira Ebrahimi Kahou.</div>
+        <div class="pub-venue">Trustworthy and Socially Responsible Machine Learning · NeurIPS 2022</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+              <p class="pub-desc">Proposes a framework for handling uncertain concepts in concept-based models using test-time interventions.</p>
+
+      </div>
+    </div>
+
+    <!-- 16 (already present; keep FHIST) -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <!-- <img src="pics/blank.png" alt="FHIST thumbnail (optional)" /> -->
+      </div>
+      <div>
+        <div class="pub-title">FHIST: A Benchmark for Few-Shot Classification of Histological Images</div>
+        <div class="pub-authors">Fereshteh Shakeri, Malik Boudiaf, Sina Mohammadi, <strong>Ivaxi Sheth</strong> et al.</div>
+        <div class="pub-venue">Preprint</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+                      <p class="pub-desc">Realistic clinical benchmark for few-shot learning in histology.</p>
+
+      </div>
+
+    </div>
+
+    <!-- 17 -->
+    <div class="pub-row">
+      <div class="pub-img">
+        <!-- <img src="pics/three-stream.png" alt="Three-Stream Network thumbnail" /> -->
+      </div>
+      <div>
+        <div class="pub-title">Three-Stream Network for Enriched Action Recognition</div>
+        <div class="pub-authors"><strong>Ivaxi Sheth</strong>.</div>
+        <div class="pub-venue">CVPR Workshops 2021</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/PLACEHOLDER">Paper</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Add this Mentees section (paste it after the Patents section, or wherever you want it). -->
+<section id="mentees">
+  <heading style="margin-top: 40px;">Mentees</heading>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Akash Gupta</span>
+    <span class="mentee-affil">University of Cambridge → Research Engineer at Apta</span>
+  </div>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Arya Labroo</span>
+    <span class="mentee-affil">University of Cambridge</span>
+  </div>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Gabriel R. Rosenbaum</span>
+    <span class="mentee-affil">University of Chicago</span>
+  </div>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Sai Suresh Macharla Vasu</span>
+    <span class="mentee-affil">CISPA</span>
+  </div>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Sidharth Pulipaka</span>
+    <span class="mentee-affil">SPAR</span>
+  </div>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Oliver Chen</span>
+    <span class="mentee-affil">SPAR</span>
+  </div>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Taaha Bajwa</span>
+    <span class="mentee-affil">SPAR</span>
+  </div>
+
+  <div class="mentee-row">
+    <span class="mentee-name">Manas Sharma</span>
+    <span class="mentee-affil">SPAR</span>
+  </div>
+</section>
+
+<section id="services">
+  <heading style="margin-top: 40px;">Services</heading>
+
+  <p>
+    <strong>Reviewer:</strong> ACL, EMNLP, NAACL, NeurIPS, ICML<br>
+    <strong>Program Committee:</strong> (add venues as applicable)<br>
+    <strong>Workshop Reviewing:</strong> (add workshops / years)<br>
+    <strong>Artifact Evaluation:</strong> (add venues / years)
+  </p>
+</section>
 
 
-                <tr onmouseout="nightsight_stop()" onmouseover="nightsight_start()">
-                  <td style="padding:20px;width:25%;vertical-align:middle">
-                    <img src="pics/siul.png" alt="elign" style="border-style: none" width="250">
-                  </td>
-                  <td style="padding:20px;width:75%;vertical-align:middle">
-		<a name="intervention"></a>
-                      <papertitle>Learning from uncertain concepts via test time interventions</papertitle>
-                    <br>
-                    <strong>Ivaxi Sheth</strong>,
-                    <a href="https://aamer98.github.io/">Aamer Abdul Rahman</a>,
-                    <a href="https://scholar.google.ca/citations?user=-hIQXcQAAAAJ&hl=en">Laya Rafiee Sevyeri</a>,
-                    <a href="https://scholar.google.com/citations?user=LAoMyyoAAAAJ&hl=en">Mohammad Havaei<a>
-                    <a href="https://saebrahimi.github.io/">Samira Ebrahimi Kahou</a>
-                    <br>
-                    <em> NeurIPS 2022, Trustworthy and Socially Responsible Machine Learning Workshop                    </em> 
-                    <br>
-                    [
-                    <a href="https://openreview.net/pdf?id=WVe3vok8Cc3">Paper</a> 
-                     ]
-                    <br>
-                    <p>
-                      We propose uncertainty based strategy to select the interventions in Concept Bottleneck Models during inference. 
-                    </td>
-                </tr> 
 
-                
-                <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-                    <td valign="middle" width="70%">
-                      <a href="https://openreview.net/forum?id=aAMgwCmP930">
-                        <papertitle>FHIST: A Benchmark for Few-shot Classification of Histological Images</papertitle>
-                      </a>
-                      <br>
-                      Fereshteh Shakeri,
-                      Malik Boudiaf,
-                      Sina Mohammadi,
-                      <strong>Ivaxi Sheth</strong>, 
-                      Mohammad Havaei,
-                      Ismail Ben Ayed
-                      Samira Ebrahimi Kahou.
-                      <em>In submission</em>
-                      <br>
-                      Our benchmark builds few-shot tasks and base-training data with various tissue types, different levels of domain shifts stemming from different cancer sites, and different class granularity levels, thereby reflecting realistic clinical settings. We evaluate the performances of state-of-the-art few-shot learning methods, initially designed for natural images, on our histology benchmark.
-                    </td>
-                </table>
-                <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-                    <td valign="middle" width="70%">
-                      <a href="https://arxiv.org/abs/2104.13051">
-                        <papertitle>Three-stream network for enriched Action Recognition</papertitle>
-                      </a>
-                      <br>
-                      <strong>Ivaxi Sheth</strong>, 
-                      <em>CVPRW' 21</em>
-                      <br>
-                      We propose three stream network with each stream working on a different frame rate of input for action recognition and detection. We test our work on popular datasets such as Kinetics, UCF-101 and AVA. The results on AVA dataset particularly shows that effectiveness of the use of attention for each stream.
-                    </td>
-                </table>
-            </td>
-          </tr>
-            <td width="100%" valign="middle">
-              <heading>Patents</heading>
-                <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-                    <td valign="middle" width="70%">
-                        <papertitle>Hardware implementation of windowed operations in three or more dimensions</papertitle>
-                      </a>
-                      <br>
-                      <strong>Ivaxi Sheth</strong>, 
-                      Cagatay Dickici,
-                      Aria Ahamdi,
-                      James Imber.
-                      <br>
-                    </td>
-			
-                    <td valign="middle" width="70%">
-                        <papertitle>System and method of performing convolution efficiently adapting winograd algorithm</papertitle>
-                      </a>
-                      <br>
-                      Ferdinando Insalata, Cagatay Dikici, James Imber, <strong>Ivaxi Sheth</strong>
-                      <br>
-                    </td>
-                </table>
-            </td>
-        </table>
+<section id="patents">
+  <heading>Patents</heading>
 
-        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
-          <tr>
-            <td>
-              <br>
-              <p align="right">
-                <font size="2">
-			            This website template - <a href="https://jonbarron.info/">Jon Barron</a>.
-                </font>
-              </p>
-            </td>
-          </tr>
-        </table>
+  <div class="pubs">
+
+    <div class="pub-row" style="grid-template-columns: 1fr;">
+      <div>
+        <div class="pub-title">
+          Hardware implementation of windowed operations in three or more dimensions
+        </div>
+        <div class="pub-authors">
+          <strong>Ivaxi Sheth</strong>, Cagatay Dickici, Aria Ahamdi, James Imber
+        </div>
+        <div class="pub-venue">
+          Patent · US Patent 12,198,034
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-row" style="grid-template-columns: 1fr;">
+      <div>
+        <div class="pub-title">
+          System and method of performing convolution efficiently adapting Winograd algorithm
+        </div>
+        <div class="pub-authors">
+          Ferdinando Insalata, Cagatay Dikici, James Imber, <strong>Ivaxi Sheth</strong>
+        </div>
+        <div class="pub-venue">
+          Patent · US Patent Application 18/613,443
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="misc">
+  <heading style="margin-top: 40px;">Misc.</heading>
+
+  <p>
+I am a trained Kathak dancer (Indian classical dance), and I regularly teach and perform. 
+In the summers, I enjoy container gardening. I also like to travel and cook veggie food 🍲. 
+More recently, I have taken up punch-needle art 🌸.
+  </p>
+</section>
+
+
+      <footer style="margin-top: 50px; padding-bottom: 40px; text-align: right;">
+      </footer>
+    </main>
+  </div>
 </body>
-
 </html>
