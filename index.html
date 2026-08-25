@@ -88,24 +88,6 @@
   /* Publications (prettier layout) */
   .pubs { margin-top: 18px; }
 
-  .pub-category {
-    margin: 28px 0 38px;
-  }
-
-  .pub-category:first-child { margin-top: 18px; }
-
-  .pub-category-title {
-    margin: 0 0 20px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-    color: #222;
-    font-family: 'Satoshi', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-  }
-
-  .pub-category .pub-row:last-child { margin-bottom: 0; }
-
   /* ✅ Make publication cards adapt to available width */
   .pub-row {
     display: grid;
@@ -212,6 +194,11 @@
   .topic-safety {
     background: #ef4444;
     border-color: #991b1b;
+  }
+
+  .topic-trustworthy {
+    background: #8b5cf6;
+    border-color: #5b21b6;
   }
 
   .pub-divider {
@@ -402,10 +389,20 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 <section id="publications">
   <heading id="publications-heading" style="margin-top: 40px;">Publications</heading>
 
+  <div class="pub-legend">
+    <span style="font-weight: 600; margin-right: 12px;">Legend:</span>
+    <span class="topic-pill topic-safety"></span>
+    <span style="margin-right: 16px;">Safety &amp; Agentic AI</span>
+    <span class="topic-pill topic-trustworthy"></span>
+    <span style="margin-right: 16px;">Trustworthy AI &amp; Ethics</span>
+    <span class="topic-pill topic-ai-science"></span>
+    <span>AI for Science &amp; Other ML</span>
+  </div>
+
   <div class="pubs">
 
     <!-- 1 -->
-     <div class="pub-row" data-category="safety-agentic">
+     <div class="pub-row">
       <div class="pub-img">
         <img src="pics/crosslingual.png" alt="UCS thumbnail" />
       </div>
@@ -424,7 +421,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
     
-    <div class="pub-row" data-category="safety-agentic">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/oeai.png" alt="Open-Ended AI Safety thumbnail" />
       </div>
@@ -443,7 +440,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
 
-    <div class="pub-row" data-category="safety-agentic">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/persistbench.png" alt="PersistBench thumbnail" />
       </div>
@@ -461,14 +458,14 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
 
-    <div class="pub-row" data-category="trustworthy-ethics">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/causaltradeoffs.png" alt="Invariance Conflicts thumbnail" />
       </div>
       <div class="pub-content">
         <div class="pub-title-wrapper">
           <div class="pub-title">Position: Trustworthy AI Suffers from Invariance Conflicts and Causality is the Solution</div>
-          <span class="topic-pill topic-safety"></span>
+          <span class="topic-pill topic-trustworthy"></span>
         </div>
         <div class="pub-authors">Ruta Binkyte*, <strong>Ivaxi Sheth*</strong>, Zhijing Jin, Mohammad Havaei, Bernhard Schölkopf, Mario Fritz.</div>
         <div class="pub-venue"> ICML 2026 </div>
@@ -480,7 +477,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 2 -->
-    <div class="pub-row" data-category="safety-agentic">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/beyond-steering.png" alt="Beyond Steering thumbnail" />
       </div>
@@ -499,7 +496,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
 
     
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/ivco.png" alt="IV Co-Scientist thumbnail" />
       </div>
@@ -521,14 +518,14 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     <!-- 3 -->
 
     
-    <div class="pub-row" data-category="trustworthy-ethics">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/llmreview.png" alt="Justice in Judgment thumbnail" />
       </div>
       <div>
         <div class="pub-title-wrapper">
           <div class="pub-title">Justice in Judgment: Unveiling (Hidden) Bias in LLM-Assisted Peer Reviews</div>
-          <span class="topic-pill topic-safety"></span>           <span class="topic-pill topic-safety"></span>
+          <span class="topic-pill topic-trustworthy"></span>
         </div>
         <div class="pub-authors">Sai Suresh Macharla Vasu*, <strong>Ivaxi Sheth*</strong>, Hui-Po Wang, Ruta Binkyte, Mario Fritz.</div>
         <div class="pub-venue"> ACL Findings 2026 </div>
@@ -551,14 +548,14 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
 
     <!-- 8 -->
-    <div class="pub-row" data-category="trustworthy-ethics">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/ethics-survey.png" alt="AI Ethics Survey thumbnail" />
       </div>
       <div>
         <div class="pub-title-wrapper">
           <div class="pub-title">Survey on AI Ethics: A Socio-technical Perspective</div>
-          <span class="topic-pill topic-safety"></span>
+          <span class="topic-pill topic-trustworthy"></span>
         </div>
         <div class="pub-authors">Dave Mbiazi, Meghana Bhange, Maryam Babaei, <strong>Ivaxi Sheth</strong>, Patrik Joslin Kenfack, Samira Ebrahimi Kahou.</div>
         <div class="pub-venue">Wiley Computational Intelligence · 2025</div>
@@ -571,7 +568,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 9 -->
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/hypothesizingcausal.png" alt="Context-Aware Reasoning thumbnail" />
       </div>
@@ -591,7 +588,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 10 (already present; kept) -->
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/causalg2llm.png" alt="CausalGraph2LLM thumbnail" />
       </div>
@@ -611,7 +608,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
 
     </div>
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/protocolllm.png" alt="ProtocolLLM thumbnail" />
       </div>
@@ -629,7 +626,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
     <!-- 11 (already present, but venue text adjusted to match requested order) -->
-    <div class="pub-row" data-category="safety-agentic">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/task-switch.png" alt="LLM Task Interference thumbnail" />
       </div>
@@ -650,14 +647,14 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 12 (already present; kept) -->
-    <div class="pub-row" data-category="trustworthy-ethics">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/coopcbm.png" alt="Concept-based models thumbnail" />
       </div>
       <div>
         <div class="pub-title-wrapper">
           <div class="pub-title">Auxiliary Losses for Learning Generalizable Concept-based Models</div>
-          <span class="topic-pill topic-safety"></span>
+          <span class="topic-pill topic-trustworthy"></span>
         </div>
         <div class="pub-authors"><strong>Ivaxi Sheth</strong>, <a href="https://saebrahimi.github.io/">Samira Ebrahimi Kahou</a>.</div>
         <div class="pub-venue">NeurIPS 2023</div>
@@ -672,7 +669,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 13 (already present but updated title + venue to match requested list) -->
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/llm4grn.png" alt="LLM4GRN thumbnail" />
       </div>
@@ -693,7 +690,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 14 -->
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <!-- <img src="pics/medg-krp.png" alt="MedG-KRP thumbnail" /> -->
       </div>
@@ -713,14 +710,14 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 15 -->
-    <div class="pub-row" data-category="trustworthy-ethics">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/ACE-firstpage2.png" alt="Transparent Anomaly Detection thumbnail" />
       </div>
       <div>
         <div class="pub-title-wrapper">
           <div class="pub-title">Transparent Anomaly Detection via Concept-based Explanations</div>
-          <span class="topic-pill topic-safety"></span>
+          <span class="topic-pill topic-trustworthy"></span>
         </div>
         <div class="pub-authors">Laya Rafiee*, <strong>Ivaxi Sheth*</strong>, Farhood Farahnak*, Shirin Abbasinejad Enger.</div>
         <div class="pub-venue">XAI in Action: Past, Present, and Future Applications · NeurIPS 2023</div>
@@ -733,14 +730,14 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 16 -->
-    <div class="pub-row" data-category="trustworthy-ethics">
+    <div class="pub-row">
       <div class="pub-img">
         <img src="pics/siul.png" alt="Uncertain Concepts thumbnail" />
       </div>
       <div>
         <div class="pub-title-wrapper">
           <div class="pub-title">Learning from Uncertain Concepts via Test-Time Interventions</div>
-          <span class="topic-pill topic-safety"></span>
+          <span class="topic-pill topic-trustworthy"></span>
         </div>
         <div class="pub-authors"><strong>Ivaxi Sheth</strong>, Aamer Abdul, Laya Rafiee, Mohammad Havaei, Samira Ebrahimi Kahou.</div>
         <div class="pub-venue">Trustworthy and Socially Responsible Machine Learning · NeurIPS 2022</div>
@@ -753,7 +750,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 17 (already present; keep FHIST) -->
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <!-- <img src="pics/blank.png" alt="FHIST thumbnail (optional)" /> -->
       </div>
@@ -774,7 +771,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 18 -->
-    <div class="pub-row" data-category="ai-science">
+    <div class="pub-row">
       <div class="pub-img">
         <!-- <img src="pics/three-stream.png" alt="Three-Stream Network thumbnail" /> -->
       </div>
@@ -793,35 +790,6 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
   </div>
 </section>
-
-<script>
-  (() => {
-    const publications = document.querySelector('#publications .pubs');
-    if (!publications) return;
-
-    const categories = [
-      ['safety-agentic', 'Safety & Agentic AI'],
-      ['trustworthy-ethics', 'Trustworthy AI & Ethics'],
-      ['ai-science', 'AI for Science & Other ML']
-    ];
-
-    categories.forEach(([key, label]) => {
-      const papers = [...publications.querySelectorAll(`.pub-row[data-category="${key}"]`)];
-      if (!papers.length) return;
-
-      const section = document.createElement('section');
-      section.className = 'pub-category';
-      section.setAttribute('aria-labelledby', `pub-category-${key}`);
-
-      const title = document.createElement('h3');
-      title.className = 'pub-category-title';
-      title.id = `pub-category-${key}`;
-      title.textContent = label;
-      section.append(title, ...papers);
-      publications.append(section);
-    });
-  })();
-</script>
 
 <!-- Add this Mentees section (paste it after the Patents section, or wherever you want it). -->
 <section id="mentees">
