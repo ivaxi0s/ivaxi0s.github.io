@@ -97,6 +97,8 @@
     align-items: center;
   }
 
+  .pub-row[hidden] { display: none; }
+
   .pub-img img {
     width: 100%;
     border-radius: 10px;
@@ -166,6 +168,36 @@
     margin: 4px 0 14px 0;
     font-size: 0.84rem;
     color: #777;
+  }
+
+  .pub-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: #666;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .pub-filter:hover {
+    color: var(--primary);
+    background: #f7f9fc;
+    text-decoration: none;
+  }
+
+  .pub-filter.is-active {
+    color: #222;
+    background: #f5f5f5;
+    border-color: #ddd;
+    font-weight: 600;
+  }
+
+  .pub-filter-count {
+    color: #888;
+    font-variant-numeric: tabular-nums;
   }
 
   .pub-title-wrapper {
@@ -391,12 +423,19 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
   <div class="pub-legend">
     <span style="font-weight: 600; margin-right: 12px;">Legend:</span>
-    <span class="topic-pill topic-safety"></span>
-    <span style="margin-right: 16px;">Safety &amp; Agentic AI</span>
-    <span class="topic-pill topic-trustworthy"></span>
-    <span style="margin-right: 16px;">Trustworthy AI &amp; Ethics</span>
-    <span class="topic-pill topic-ai-science"></span>
-    <span>AI for Science &amp; Other ML</span>
+    <a class="pub-filter is-active" href="#publications-heading" data-topic-filter="all" aria-pressed="true">All publications</a>
+    <a class="pub-filter" href="#publications-heading" data-topic-filter="topic-safety" aria-pressed="false">
+      <span class="topic-pill topic-safety"></span>
+      <span>Safety &amp; Agentic AI</span>
+    </a>
+    <a class="pub-filter" href="#publications-heading" data-topic-filter="topic-trustworthy" aria-pressed="false">
+      <span class="topic-pill topic-trustworthy"></span>
+      <span>Trustworthy AI &amp; Ethics</span>
+    </a>
+    <a class="pub-filter" href="#publications-heading" data-topic-filter="topic-ai-science" aria-pressed="false">
+      <span class="topic-pill topic-ai-science"></span>
+      <span>AI for Science &amp; Other ML</span>
+    </a>
   </div>
 
   <div class="pubs">
@@ -790,6 +829,33 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
   </div>
 </section>
+
+<script>
+  (() => {
+    const publicationSection = document.querySelector('#publications');
+    if (!publicationSection) return;
+
+    const filters = [...publicationSection.querySelectorAll('[data-topic-filter]')];
+    const publications = [...publicationSection.querySelectorAll('.pubs > .pub-row')];
+
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const selectedTopic = filter.dataset.topicFilter;
+
+        publications.forEach((publication) => {
+          publication.hidden = selectedTopic !== 'all' &&
+            !publication.querySelector(`.topic-pill.${selectedTopic}`);
+        });
+
+        filters.forEach((item) => {
+          const isActive = item === filter;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-pressed', String(isActive));
+        });
+      });
+    });
+  })();
+</script>
 
 <!-- Add this Mentees section (paste it after the Patents section, or wherever you want it). -->
 <section id="mentees">
