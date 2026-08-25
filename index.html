@@ -88,6 +88,24 @@
   /* Publications (prettier layout) */
   .pubs { margin-top: 18px; }
 
+  .pub-category {
+    margin: 28px 0 38px;
+  }
+
+  .pub-category:first-child { margin-top: 18px; }
+
+  .pub-category-title {
+    margin: 0 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    color: #222;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .pub-category .pub-row:last-child { margin-bottom: 0; }
+
   /* ✅ Make publication cards adapt to available width */
   .pub-row {
     display: grid;
@@ -384,18 +402,10 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 <section id="publications">
   <heading id="publications-heading" style="margin-top: 40px;">Publications</heading>
 
-  <div class="pub-legend">
-    <span style="font-weight: 600; margin-right: 12px;">Legend:</span>
-    <span class="topic-pill topic-ai-science"></span>
-    <span style="margin-right: 16px;">AI for Science</span>
-    <span class="topic-pill topic-safety"></span>
-    <span>Safety and Ethics</span>
-  </div>
-
   <div class="pubs">
 
     <!-- 1 -->
-     <div class="pub-row">
+     <div class="pub-row" data-category="safety-agentic">
       <div class="pub-img">
         <img src="pics/crosslingual.png" alt="UCS thumbnail" />
       </div>
@@ -414,7 +424,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
     
-    <div class="pub-row">
+    <div class="pub-row" data-category="safety-agentic">
       <div class="pub-img">
         <img src="pics/oeai.png" alt="Open-Ended AI Safety thumbnail" />
       </div>
@@ -433,7 +443,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
 
-    <div class="pub-row">
+    <div class="pub-row" data-category="safety-agentic">
       <div class="pub-img">
         <img src="pics/persistbench.png" alt="PersistBench thumbnail" />
       </div>
@@ -451,7 +461,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
 
-    <div class="pub-row">
+    <div class="pub-row" data-category="trustworthy-ethics">
       <div class="pub-img">
         <img src="pics/causaltradeoffs.png" alt="Invariance Conflicts thumbnail" />
       </div>
@@ -470,7 +480,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 2 -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="safety-agentic">
       <div class="pub-img">
         <img src="pics/beyond-steering.png" alt="Beyond Steering thumbnail" />
       </div>
@@ -489,7 +499,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
 
     
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <img src="pics/ivco.png" alt="IV Co-Scientist thumbnail" />
       </div>
@@ -511,7 +521,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     <!-- 3 -->
 
     
-    <div class="pub-row">
+    <div class="pub-row" data-category="trustworthy-ethics">
       <div class="pub-img">
         <img src="pics/llmreview.png" alt="Justice in Judgment thumbnail" />
       </div>
@@ -541,7 +551,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
 
     <!-- 8 -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="trustworthy-ethics">
       <div class="pub-img">
         <img src="pics/ethics-survey.png" alt="AI Ethics Survey thumbnail" />
       </div>
@@ -561,7 +571,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 9 -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <img src="pics/hypothesizingcausal.png" alt="Context-Aware Reasoning thumbnail" />
       </div>
@@ -581,7 +591,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 10 (already present; kept) -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <img src="pics/causalg2llm.png" alt="CausalGraph2LLM thumbnail" />
       </div>
@@ -601,7 +611,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
 
     </div>
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <img src="pics/protocolllm.png" alt="ProtocolLLM thumbnail" />
       </div>
@@ -619,7 +629,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
       </div>
     </div>
     <!-- 11 (already present, but venue text adjusted to match requested order) -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="safety-agentic">
       <div class="pub-img">
         <img src="pics/task-switch.png" alt="LLM Task Interference thumbnail" />
       </div>
@@ -640,7 +650,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 12 (already present; kept) -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="trustworthy-ethics">
       <div class="pub-img">
         <img src="pics/coopcbm.png" alt="Concept-based models thumbnail" />
       </div>
@@ -662,7 +672,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 13 (already present but updated title + venue to match requested list) -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <img src="pics/llm4grn.png" alt="LLM4GRN thumbnail" />
       </div>
@@ -683,7 +693,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 14 -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <!-- <img src="pics/medg-krp.png" alt="MedG-KRP thumbnail" /> -->
       </div>
@@ -703,7 +713,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 15 -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="trustworthy-ethics">
       <div class="pub-img">
         <img src="pics/ACE-firstpage2.png" alt="Transparent Anomaly Detection thumbnail" />
       </div>
@@ -723,7 +733,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 16 -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="trustworthy-ethics">
       <div class="pub-img">
         <img src="pics/siul.png" alt="Uncertain Concepts thumbnail" />
       </div>
@@ -743,7 +753,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 17 (already present; keep FHIST) -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <!-- <img src="pics/blank.png" alt="FHIST thumbnail (optional)" /> -->
       </div>
@@ -764,7 +774,7 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
     </div>
 
     <!-- 18 -->
-    <div class="pub-row">
+    <div class="pub-row" data-category="ai-science">
       <div class="pub-img">
         <!-- <img src="pics/three-stream.png" alt="Three-Stream Network thumbnail" /> -->
       </div>
@@ -783,6 +793,35 @@ Slides from my recent talk titled <i><a href="https://docs.google.com/presentati
 
   </div>
 </section>
+
+<script>
+  (() => {
+    const publications = document.querySelector('#publications .pubs');
+    if (!publications) return;
+
+    const categories = [
+      ['safety-agentic', 'Safety & Agentic AI'],
+      ['trustworthy-ethics', 'Trustworthy AI & Ethics'],
+      ['ai-science', 'AI for Science & Other ML']
+    ];
+
+    categories.forEach(([key, label]) => {
+      const papers = [...publications.querySelectorAll(`.pub-row[data-category="${key}"]`)];
+      if (!papers.length) return;
+
+      const section = document.createElement('section');
+      section.className = 'pub-category';
+      section.setAttribute('aria-labelledby', `pub-category-${key}`);
+
+      const title = document.createElement('h3');
+      title.className = 'pub-category-title';
+      title.id = `pub-category-${key}`;
+      title.textContent = label;
+      section.append(title, ...papers);
+      publications.append(section);
+    });
+  })();
+</script>
 
 <!-- Add this Mentees section (paste it after the Patents section, or wherever you want it). -->
 <section id="mentees">
